@@ -1,4 +1,6 @@
 // Establish version and status
+apply plugin: 'java'
+apply plugin: 'maven'
 
 buildscript {
     apply from: file('gradle/buildscript.gradle'), to: buildscript 
@@ -31,7 +33,6 @@ subprojects {
 		testCompile 'commons-io:commons-io:2.4'
 	}
 
-	sourceCompatibility = 1.5
 	animalsniffer {
 		signature = "org.codehaus.mojo.signature:java16:+@signature"
 	}
@@ -66,4 +67,8 @@ project(':lzo-hadoop') {
 
 		testCompile project(':lzo-core').sourceSets.test.output
 	}
+}
+
+subprojects {
+	tasks.withType(Javadoc).all { enabled = false }
 }
